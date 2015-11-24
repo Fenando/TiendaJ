@@ -58,8 +58,8 @@ public class DetalleDAL {
         }
     
     }
-         public ResultSet readInforme(){
-        
+         public ArrayList<String[]> readInforme(){
+        ArrayList<String[]> xs = new ArrayList<>();
         try {
             PreparedStatement ps = new Conector().getConn().prepareStatement(
                     "select count(*) as contador , c.* "
@@ -70,7 +70,9 @@ public class DetalleDAL {
                             + "on v.rut = c.rut "
                             + "group by c.rut ");
              ResultSet rs = ps.executeQuery();
-             
+             while (rs.next()) {
+                xs.add(e)
+            }
              return rs;
             
             } catch (SQLException ex) {
