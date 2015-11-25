@@ -58,22 +58,30 @@ public class Detalle extends Comic{
        return new DetalleDAL().readPorNombre(code);
         
     } 
-    public void readPorVenta(){
-        
-        try {
-            ResultSet rs = new DetalleDAL().readInforme();
-            while (rs.next()) {
-                System.out.println(rs.getString("c.nombre"));
-                System.out.println(rs.getString("contador"));
+    public ArrayList<String> readInforme(){
+        int tComic = 0;
+        ArrayList<Object[]> ol = new DetalleDAL().readInforme();
+            for (Object[] o : ol ){
+                tComic =+ Integer.parseInt(o[0].toString()); 
             }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Detalle.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int tVentas = tComic *1000; 
+        ArrayList<String> sl = new ArrayList<>();
+        sl.add(String.valueOf(tComic));
+        sl.add(String.valueOf(tVentas));
+        sl.add(ol.get(0)[1].toString());
+        return sl;
+    }
+         public static void main(String[] args) {
+        new Detalle().readInforme();
+    }
+    }
+   
         
-    }
-    public static void main(String[] args) {
-        new Detalle().readPorVenta();
-    }
     
-}
+    
+
+
+    
+      
+   
+

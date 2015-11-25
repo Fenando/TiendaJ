@@ -58,9 +58,10 @@ public class DetalleDAL {
         }
     
     }
-         public ArrayList<String[]> readInforme(){
-        ArrayList<String[]> xs = new ArrayList<>();
+         public ArrayList<Object[]> readInforme(){
+        ArrayList<Object[]> xs = new ArrayList<>();
         try {
+            
             PreparedStatement ps = new Conector().getConn().prepareStatement(
                     "select count(*) as contador , c.* "
                             + "from detalle d "
@@ -68,12 +69,15 @@ public class DetalleDAL {
                             + "on d.id_venta = v.idVenta "
                             + "join cliente c "
                             + "on v.rut = c.rut "
-                            + "group by c.rut ");
+                            + "group by c.rut "
+                            + "order by contador DESC ");
              ResultSet rs = ps.executeQuery();
              while (rs.next()) {
-                xs.add(e)
+                
+                xs.add(new Object[] {rs.getInt("contador"),rs.getString("c.nombre")});
+                
             }
-             return rs;
+             return xs;
             
             } catch (SQLException ex) {
             Logger.getLogger(ComicDAL.class.getName()).log(Level.SEVERE, null, ex);
