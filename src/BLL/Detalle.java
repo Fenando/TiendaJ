@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  *
  * @author fernando
  */
-public class Detalle extends Comic{
+public class Detalle{
     
     private int idDetalle;
     private int id_venta;
@@ -54,8 +54,13 @@ public class Detalle extends Comic{
     
         new DetalleDAL().create(d);
     }
-    public ArrayList<Detalle> readPorVenta(int code){
-       return new DetalleDAL().readPorNombre(code);
+    public ArrayList<String[]> readPorVenta(int code){
+       ArrayList<String[]> sl = new ArrayList<>();
+       for(Object[]o:new DetalleDAL().readPorNombre(code) ){
+           sl.add(new String[]{o[0].toString(),o[1].toString(),o[2].toString()});
+       } 
+       
+        return sl;
         
     } 
     public ArrayList<String> readInforme(){

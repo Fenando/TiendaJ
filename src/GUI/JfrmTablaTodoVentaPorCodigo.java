@@ -135,11 +135,11 @@ public class JfrmTablaTodoVentaPorCodigo extends javax.swing.JFrame {
         dt.addColumn("Código Comic");
         dt.addColumn("Nombre Comic");
         
-        for (Detalle c: new Detalle().readPorVenta(Integer.valueOf(this.jtxt_nombre.getText()))) {
+        for (String[] c: new Detalle().readPorVenta(Integer.valueOf(this.jtxt_nombre.getText()))) {
             Object[]o = new Object[3];
-            o[0]=c.getIdDetalle();
-            o[1]=c.getCodigoComic();
-            o[2]=c.getNombre();
+            o[0]=c[0];
+            o[1]=c[1];
+            o[2]=c[2];
             dt.addRow(o);
         }
         this.jlbl_totalVentas.setText(String.valueOf(dt.getRowCount()*1000));
