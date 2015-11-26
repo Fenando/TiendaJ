@@ -10,6 +10,7 @@ import BLL.Detalle;
 import BLL.Venta;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -173,14 +174,17 @@ private ArrayList<Comic> cl;
         Venta v = new Venta();
         v.setIdVenta(Integer.valueOf(this.jtxt_idVenta.getText()));
         v.setRut(Integer.valueOf(this.jtxt_rutCliente.getText()));
-        v.create(v);
-
+        
+        String pop = v.create(v);
+        
+        
         for (Comic c:cl) {
             Detalle d = new Detalle();
             d.setCodigoComic(c.getCodigo());
             d.setId_venta(v.getIdVenta());
             new Detalle().create(d);
         }
+        JOptionPane.showMessageDialog(null, pop );
     }//GEN-LAST:event_jbtn_venderActionPerformed
 
 

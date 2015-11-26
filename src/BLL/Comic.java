@@ -49,12 +49,23 @@ public class Comic {
     }
     
     public String create(Comic c){
-        try {
-            new ComicDAL().create(c);
-            return "Comic ingresado";
-        } catch (Exception ex) {
-            return "comic no ingresado";
+       
+        int x = new ComicDAL().create(c);
+        String r;
+        switch (x) {
+            case 1:
+                r = "Ingresado correctamente";
+                break;
+            case 2:
+                r= "Error conexión con la Base de datos";
+                break;
+            case 3:
+                r= "Este codigo ya existe";
+                break;
+            default:
+                r= "Ha ocurrido un error faltal";
         }
+        return r;
     }
     public ArrayList<Comic> readBodega(){
        return new ComicDAL().readBodega();

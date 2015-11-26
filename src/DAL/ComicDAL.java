@@ -23,7 +23,7 @@ public class ComicDAL {
     /**
      * CRUD
      */
-    public void create(Comic c){ 
+    public int create(Comic c){ 
         try {
             PreparedStatement ps = new Conector().getConn().prepareStatement(              
                     "insert into comic values(?,?,?)"); 
@@ -32,13 +32,16 @@ public class ComicDAL {
             ps.setString(2, c.getNombre());
             ps.setInt(3, c.getNumero());
             ps.executeUpdate();
-            
+            return 1;
             
         } catch (SQLException ex) {
             if (ex.getErrorCode()==1062) {
-                
+                return 3;
+            }else{
+                return 2;
             }
-            Logger.getLogger(ComicDAL.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
         }
     }
     public ArrayList<Comic> readBodega(){

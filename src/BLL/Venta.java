@@ -40,9 +40,24 @@ public class Venta {
     public void setRut(int rut) {
         this.rut = rut;
     }
-    public void create(Venta v){
+    public String create(Venta v){
     
-        new VentaDAL().create(v);
+        int x = new VentaDAL().create(v);
+         String r;
+        switch (x) {
+            case 1:
+                r = "Venta Ingresada correctamente\n";
+                break;
+            case 2:
+                r= "Error al ingresar la venta";
+                break;
+            case 3:
+                r= "El codigo ya existe";
+                break;
+            default:
+                r= "Ha ocurrido un error faltal";
+        }
+        return r;
     }
     
 }

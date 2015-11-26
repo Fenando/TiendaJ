@@ -6,6 +6,7 @@
 package GUI;
 
 import BLL.Comic;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -99,7 +100,8 @@ public class JpnlIngresoComic extends javax.swing.JPanel {
         c.setCodigo(Integer.valueOf(this.jtxt_codigo.getText()));
         c.setNombre(this.jtxt_nombre.getText());
         c.setNumero(Integer.valueOf(this.jtxt_numero.getText()));
-        System.out.println(new Comic().create(c));
+        String pop = new Comic().create(c);
+        JOptionPane.showMessageDialog(null, pop);
     }//GEN-LAST:event_jbtn_guardarActionPerformed
 
 

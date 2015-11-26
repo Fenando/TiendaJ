@@ -36,10 +36,25 @@ public class Cliente {
         this.nombre = nombre;
     }
     
-    public void create(Cliente c){
+    public String create(Cliente c){
         
-        new ClienteDAL().create(c);
-    
+        int x = new ClienteDAL().create(c);
+        System.out.println(x);
+        String r;
+        switch (x) {
+            case 1:
+                r = "Ingresado correctamente";
+                break;
+            case 2:
+                r= "Error conexión con la Base de datos";
+                break;
+            case 3:
+                r= "El rut ya existe";
+                break;
+            default:
+                r= "Ha ocurrido un error faltal";
+        }
+        return r;
     }
     public ArrayList<Cliente> readClientes(){
         return new ClienteDAL().readClientes();

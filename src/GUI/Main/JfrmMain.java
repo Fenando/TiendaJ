@@ -9,7 +9,10 @@ import GUI.JpnlInforme;
 import GUI.JpnlIngresoCliente;
 import GUI.JpnlIngresoComic;
 import GUI.JpnlIngresoVenta;
+import GUI.JpnlTablaClientes;
+import GUI.JpnlTablaPorNombre;
 import GUI.JpnlTablaTodo;
+import GUI.JpnlTablaVentaPorCodigo;
 
 /**
  *
@@ -117,6 +120,11 @@ public class JfrmMain extends javax.swing.JFrame {
         jMenu2.add(jmnu_verClientes);
 
         jmnu_verVentas.setText("Ventas");
+        jmnu_verVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnu_verVentasActionPerformed(evt);
+            }
+        });
         jMenu2.add(jmnu_verVentas);
 
         jmnu_verInforme.setText("Informe");
@@ -132,6 +140,11 @@ public class JfrmMain extends javax.swing.JFrame {
         jMenu3.setText("Buscar");
 
         jMenuItem8.setText("Comic por nombre");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem8);
 
         jMenuBar1.add(jMenu3);
@@ -186,7 +199,18 @@ public class JfrmMain extends javax.swing.JFrame {
 
     private void jmnu_verClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnu_verClientesActionPerformed
         // TODO add your handling code here:
+        this.cambioVentana(new JpnlTablaClientes());
     }//GEN-LAST:event_jmnu_verClientesActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        this.cambioVentana(new JpnlTablaPorNombre());
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jmnu_verVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnu_verVentasActionPerformed
+        // TODO add your handling code here:
+        this.cambioVentana(new JpnlTablaVentaPorCodigo());
+    }//GEN-LAST:event_jmnu_verVentasActionPerformed
 
     
     

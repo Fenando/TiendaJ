@@ -17,7 +17,7 @@ public class ClienteDAL {
     /**
      * CRUD
      */
-    public void create(Cliente c){
+    public int create(Cliente c){
     
                 try {
             PreparedStatement ps = new Conector().getConn().prepareStatement(              
@@ -26,10 +26,15 @@ public class ClienteDAL {
             ps.setInt(1,c.getRut());
             ps.setString(2, c.getNombre());
             ps.executeUpdate();
-            
+            return 1;
             
         } catch (SQLException ex) {
-            Logger.getLogger(ComicDAL.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ComicDAL.class.getName()).log(Level.SEVERE, null, ex);
+                    if (ex.getErrorCode()==1062) {
+                        return 3;
+                    }else{
+                        return 2;
+                    }   
         }
     }
     public ArrayList<Cliente> readClientes(){

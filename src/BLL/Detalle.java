@@ -50,9 +50,22 @@ public class Detalle{
     public void setCodigoComic(int codigoComic) {
         this.codigoComic = codigoComic;
     }
-    public void create(Detalle d){
+    public String create(Detalle d){
     
-        new DetalleDAL().create(d);
+        int x = new DetalleDAL().create(d);
+         String r;
+        switch (x) {
+            case 1:
+                r = "Detalle Ingresado correctamente";
+                break;
+            case 2:
+                r= "Error al ingresar detalle";
+                break;
+            
+            default:
+                r= "Ha ocurrido un error faltal";
+        }
+        return r;
     }
     public ArrayList<String[]> readPorVenta(int code){
        ArrayList<String[]> sl = new ArrayList<>();
@@ -76,9 +89,7 @@ public class Detalle{
         sl.add(ol.get(0)[1].toString());
         return sl;
     }
-         public static void main(String[] args) {
-        new Detalle().readInforme();
-    }
+  
     }
    
         

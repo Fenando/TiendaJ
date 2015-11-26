@@ -18,7 +18,7 @@ public class DetalleDAL {
     /**
      * CRUD
      */
-    public void create(Detalle d) {
+    public int create(Detalle d) {
 
         try {
             PreparedStatement ps = new Conector().getConn().prepareStatement(
@@ -27,9 +27,10 @@ public class DetalleDAL {
             ps.setInt(1, d.getId_venta());
             ps.setInt(2, d.getCodigoComic());
             ps.executeUpdate();
-
+            return 1;
         } catch (SQLException ex) {
             Logger.getLogger(ComicDAL.class.getName()).log(Level.SEVERE, null, ex);
+            return 2;
         }
     }
 

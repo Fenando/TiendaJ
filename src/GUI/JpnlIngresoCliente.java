@@ -6,6 +6,7 @@
 package GUI;
 
 import BLL.Cliente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,7 +87,8 @@ public class JpnlIngresoCliente extends javax.swing.JPanel {
         Cliente c = new Cliente();
         c.setRut(Integer.valueOf(this.jtxt_codigo.getText()));
         c.setNombre(this.jtxt_nombre.getText());
-        new Cliente().create(c);
+        String pop = new Cliente().create(c);
+        JOptionPane.showMessageDialog(null, pop);
     }//GEN-LAST:event_jbtn_guardarActionPerformed
 
 

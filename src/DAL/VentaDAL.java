@@ -14,7 +14,7 @@ public class VentaDAL {
     /**
      * CRUD
      */
-       public void create(Venta v){
+       public int create(Venta v){
     
                 try {
             PreparedStatement ps = new Conector().getConn().prepareStatement(              
@@ -23,10 +23,16 @@ public class VentaDAL {
             ps.setInt(1,v.getIdVenta());
             ps.setInt(2, v.getRut());
             ps.executeUpdate();
-            
+            return 1;
             
         } catch (SQLException ex) {
             Logger.getLogger(ComicDAL.class.getName()).log(Level.SEVERE, null, ex);
+                    if (ex.getErrorCode()==1062) {
+                        return 3;
+                    }else{
+                    return 2;
+                    }
         }
+                
     }
 }

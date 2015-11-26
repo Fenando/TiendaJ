@@ -60,6 +60,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ventas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmnu_verVentasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmnu_verInforme">
               <Properties>
@@ -80,6 +83,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Comic por nombre"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
