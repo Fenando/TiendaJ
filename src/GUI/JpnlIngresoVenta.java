@@ -8,7 +8,10 @@ package GUI;
 import BLL.Comic;
 import BLL.Detalle;
 import BLL.Venta;
+import GUI.Main.JfrmMain;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -17,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author fernando
  */
 public class JpnlIngresoVenta extends javax.swing.JPanel {
-private DefaultListModel dm = new DefaultListModel();
+private DefaultListModel dm;
 private Comic cc;
 private ArrayList<Comic> cl;
     /**
@@ -25,10 +28,13 @@ private ArrayList<Comic> cl;
      */
     public JpnlIngresoVenta() {
         initComponents();
-        initComponents();
         cc = new Comic();
         cl = new ArrayList<>();
         this.setJlst_productoBodega();
+        this.setJlst_compra();
+//        System.out.println(this.jlst_productoComprar.countComponents());
+//        System.out.println(this.jlst_productoComprar.getModel().getSize());
+
     }
      public void setJlst_productoBodega() {
         DefaultListModel dl = new DefaultListModel();
@@ -36,7 +42,13 @@ private ArrayList<Comic> cl;
             dl.addElement(c.getNombre()+" "+c.getCodigo());
         }
         this.jlst_productoBodega.setModel(dl);
+        
     }
+     public void setJlst_compra(){
+        dm = new DefaultListModel();
+     
+     }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,20 +59,54 @@ private ArrayList<Comic> cl;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlst_productoBodega = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jlst_productoComprar = new javax.swing.JList();
-        jbtn_flecha = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jbtn_vender = new javax.swing.JButton();
         jtxt_idVenta = new javax.swing.JTextField();
         jtxt_rutCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jlst_productoBodega = new javax.swing.JList();
+        jbtn_flecha = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jlst_productoComprar = new javax.swing.JList();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         jLabel3.setText("Productos en bodega");
+
+        jLabel4.setText("Productos a comprar");
+
+        jLabel1.setText("Id venta");
+
+        jbtn_vender.setText("Vender");
+        jbtn_vender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_venderActionPerformed(evt);
+            }
+        });
+
+        jtxt_idVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_idVentaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Rut Cliente");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jlst_productoBodega.setVisibleRowCount(7);
         jlst_productoBodega.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -74,11 +120,6 @@ private ArrayList<Comic> cl;
         });
         jScrollPane1.setViewportView(jlst_productoBodega);
 
-        jLabel4.setText("Productos a comprar");
-
-        jlst_productoComprar.setVisibleRowCount(7);
-        jScrollPane2.setViewportView(jlst_productoComprar);
-
         jbtn_flecha.setText("-->");
         jbtn_flecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,75 +127,81 @@ private ArrayList<Comic> cl;
             }
         });
 
-        jLabel1.setText("Id venta");
+        jlst_productoComprar.setVisibleRowCount(7);
+        jScrollPane2.setViewportView(jlst_productoComprar);
 
-        jbtn_vender.setText("Vender");
-        jbtn_vender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_venderActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Rut Cliente");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(jbtn_flecha))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jbtn_flecha)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jtxt_idVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jtxt_rutCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jbtn_flecha)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jbtn_vender, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtxt_idVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtxt_rutCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(jbtn_vender, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
                     .addComponent(jtxt_idVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
                     .addComponent(jtxt_rutCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jbtn_flecha))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jbtn_vender))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbtn_vender)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,13 +213,21 @@ private ArrayList<Comic> cl;
         // TODO add your handling code here:
         dm.addElement(this.jlst_productoBodega.getSelectedValue());
         this.jlst_productoComprar.setModel(dm);
+   
         cl.add(cc.readBodega().get(this.jlst_productoBodega.getSelectedIndex()));
+//        System.out.println(this.jlst_productoComprar.getModel().getSize());
     }//GEN-LAST:event_jbtn_flechaActionPerformed
 
     private void jbtn_venderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_venderActionPerformed
+    try {
         // TODO add your handling code here:
+        
+        if (this.jlst_productoComprar.getModel().getSize() != 0 ) {
+            
+        
         Venta v = new Venta();
         v.setIdVenta(Integer.valueOf(this.jtxt_idVenta.getText()));
+        
         v.setRut(Integer.valueOf(this.jtxt_rutCliente.getText()));
         
         String pop = v.create(v);
@@ -185,14 +240,37 @@ private ArrayList<Comic> cl;
             new Detalle().create(d);
         }
         JOptionPane.showMessageDialog(null, pop );
+        this.setJlst_compra();
+        this.jlst_productoComprar.setModel(dm);
+        String nIdV = String.valueOf(Integer.parseInt(this.jtxt_idVenta.getText())+1);
+        this.jtxt_idVenta.setText(nIdV);
+        }else{
+        JOptionPane.showMessageDialog(null, "El detalle esta vacio" );
+        }
+    } catch (Exception ex) {
+//        JOptionPane.showMessageDialog(null, ex.getMessage(), "Cliente no valido",JOptionPane.INFORMATION_MESSAGE, null);
+        int o  = JOptionPane.showConfirmDialog(null, null, "error", 2);
+        if(o==0){
+            System.out.println("1");
+            new JfrmMain().cambioVentana(new JpnlIngresoCliente());
+            
+        }        
+    }
+        
     }//GEN-LAST:event_jbtn_venderActionPerformed
+
+    private void jtxt_idVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_idVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxt_idVentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtn_flecha;

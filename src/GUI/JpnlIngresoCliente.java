@@ -6,6 +6,9 @@
 package GUI;
 
 import BLL.Cliente;
+import BLL.ExRutInvalidoBLL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -85,12 +88,20 @@ public class JpnlIngresoCliente extends javax.swing.JPanel {
     private void jbtn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_guardarActionPerformed
         // TODO add your handling code here:
         Cliente c = new Cliente();
-        c.setRut(Integer.valueOf(this.jtxt_codigo.getText()));
+        //this.rutOk(this.jtxt_codigo.getText());
+        try {
+        c.validaRut(this.jtxt_codigo.getText());    
         c.setNombre(this.jtxt_nombre.getText());
         String pop = new Cliente().create(c);
         JOptionPane.showMessageDialog(null, pop);
+        } catch (ExRutInvalidoBLL ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        
     }//GEN-LAST:event_jbtn_guardarActionPerformed
-
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

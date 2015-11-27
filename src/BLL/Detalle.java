@@ -78,9 +78,11 @@ public class Detalle{
     } 
     public ArrayList<String> readInforme(){
         int tComic = 0;
+        int i;
         ArrayList<Object[]> ol = new DetalleDAL().readInforme();
             for (Object[] o : ol ){
-                tComic =+ Integer.parseInt(o[0].toString()); 
+                tComic += Integer.parseInt(o[0].toString()); 
+                //System.out.println(o[0]);
             }
         int tVentas = tComic *1000; 
         ArrayList<String> sl = new ArrayList<>();

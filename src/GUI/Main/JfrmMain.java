@@ -26,8 +26,10 @@ public class JfrmMain extends javax.swing.JFrame {
     public JfrmMain() {
         initComponents();
     }
-    
-    private void cambioVentana(javax.swing.JPanel jp){
+   
+   
+    public void cambioVentana(javax.swing.JPanel jp){
+        System.out.println("2");
         this.jpnl_main.removeAll();
         jp.setSize(this.jpnl_main.getSize());
         this.jpnl_main.add(jp);

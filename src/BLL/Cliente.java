@@ -1,7 +1,10 @@
 package BLL;
 
 import DAL.ClienteDAL;
+import DAL.ExCodigoDuplicadoDAL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +26,19 @@ public class Cliente {
     public int getRut() {
         return rut;
     }
-
+    public void validaRut(String x) throws ExRutInvalidoBLL{
+        System.out.println(x.matches("[\\w]]{8,9}"));
+        if (x.matches("[a-zA-Z0-9_]{8,9}")) {
+            try {
+               int i = Integer.parseInt(x);
+               this.setRut(i);
+            } catch (Exception e) {
+                throw new ExRutInvalidoBLL("Ingresa solo numeros enteros");
+            }
+        }else{
+            throw new ExRutInvalidoBLL("Longitud de Rut no valida");
+        }
+    }
     public void setRut(int rut) {
         this.rut = rut;
     }
@@ -38,9 +53,16 @@ public class Cliente {
     
     public String create(Cliente c){
         
-        int x = new ClienteDAL().create(c);
+        int x=0;
+        try {
+            x = new ClienteDAL().create(c);
+            System.out.println(x);
+        } catch (ExCodigoDuplicadoDAL ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
         System.out.println(x);
-        String r;
+        String r="";
         switch (x) {
             case 1:
                 r = "Ingresado correctamente";
@@ -49,7 +71,7 @@ public class Cliente {
                 r= "Error conexión con la Base de datos";
                 break;
             case 3:
-                r= "El rut ya existe";
+                //r= "El rut ya existe";
                 break;
             default:
                 r= "Ha ocurrido un error faltal";

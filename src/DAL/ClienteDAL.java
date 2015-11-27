@@ -17,7 +17,7 @@ public class ClienteDAL {
     /**
      * CRUD
      */
-    public int create(Cliente c){
+    public int create(Cliente c) throws ExCodigoDuplicadoDAL{
     
                 try {
             PreparedStatement ps = new Conector().getConn().prepareStatement(              
@@ -31,7 +31,7 @@ public class ClienteDAL {
         } catch (SQLException ex) {
             //Logger.getLogger(ComicDAL.class.getName()).log(Level.SEVERE, null, ex);
                     if (ex.getErrorCode()==1062) {
-                        return 3;
+                        throw new ExCodigoDuplicadoDAL();
                     }else{
                         return 2;
                     }   

@@ -6,6 +6,7 @@
 package BLL;
 
 
+import DAL.ClienteDAL;
 import DAL.VentaDAL;
 
 /**
@@ -37,8 +38,19 @@ public class Venta {
         return rut;
     }
 
-    public void setRut(int rut) {
-        this.rut = rut;
+    public void setRut(int rut) throws Exception {
+        boolean b = false;
+        for (Cliente c: new ClienteDAL().readClientes()) {
+            if (c.getRut()==rut) {
+            b = true;
+            }
+        }
+        if (b) {
+            this.rut = rut;
+        }else{
+            throw new Exception("Rut no valido, cliente no registrado");
+        }
+        
     }
     public String create(Venta v){
     
