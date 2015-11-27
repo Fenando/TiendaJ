@@ -214,7 +214,7 @@ public class JfrmMain extends javax.swing.JFrame {
         this.cambioVentana(new JpnlTablaVentaPorCodigo());
     }//GEN-LAST:event_jmnu_verVentasActionPerformed
 
-    
+    public static JfrmMain instancia;
     
     /**
      * @param args the command line arguments
@@ -246,7 +246,8 @@ public class JfrmMain extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JfrmMain().setVisible(true);
+                instancia = new JfrmMain();
+                instancia.setVisible(true);
             }
         });
     }

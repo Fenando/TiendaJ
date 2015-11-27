@@ -16,14 +16,19 @@ import javax.swing.JOptionPane;
  * @author fernando
  */
 public class JpnlIngresoCliente extends javax.swing.JPanel {
-
     /**
      * Creates new form JnlIngresoCliente
      */
     public JpnlIngresoCliente() {
         initComponents();
     }
-
+    public JpnlIngresoCliente(String rut) {
+        initComponents();
+        this.setRut(rut);
+    }
+    private void setRut(String r){
+        this.jtxt_codigo.setText(String.valueOf(r));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

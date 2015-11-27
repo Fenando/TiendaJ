@@ -249,10 +249,10 @@ private ArrayList<Comic> cl;
         }
     } catch (Exception ex) {
 //        JOptionPane.showMessageDialog(null, ex.getMessage(), "Cliente no valido",JOptionPane.INFORMATION_MESSAGE, null);
-        int o  = JOptionPane.showConfirmDialog(null, null, "error", 2);
+        int o  = JOptionPane.showConfirmDialog(null,"El rut no corresponde a ningún cliente\nquieres ingresarlo?" , "error", 2);
         if(o==0){
-            System.out.println("1");
-            new JfrmMain().cambioVentana(new JpnlIngresoCliente());
+            //System.out.println("1");
+            JfrmMain.instancia.cambioVentana(new JpnlIngresoCliente(this.jtxt_rutCliente.getText()));
             
         }        
     }
